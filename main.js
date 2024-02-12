@@ -14,7 +14,9 @@ kaboom({
 loadRoot('assets/')
 loadSprite('cobble', 'cobble.png')
 loadSprite('p1', 'p1.png')
-loadSprite('back', 'back.jpeg')
+loadSprite('p2', 'p2.png')
+loadSprite('p3', 'p3.png')
+loadSprite('p4', 'p4.png')
 const lvl1 = addLevel([
     // 16x1 tiles
     'øøøøøøøøøøøøøøøøøøøøøøøøøøøøøøø',
@@ -57,20 +59,78 @@ const lvl1 = addLevel([
         }
     })
 const SPEED = 69
-const player = add([
+const p1 = add([
     sprite('p1'),
-    scale(.5),
+    scale(1),
     area(),
-    pos(32,32)])
+    pos(32,32)
+])
+const p2 = add([
+    sprite('p2'),
+    scale(1),
+    area(),
+    pos(450,450)
+])
+const p3 = add([
+    sprite('p3'),
+    scale(1),
+    area(),
+    pos(450,32)
+])
+const p4 = add([
+    sprite('p4'),
+    scale(1),
+    area(),
+    pos(32,450)
+])
 onKeyDown('w', () => {
-    player.move(0, -SPEED)
+    p1.move(0, -SPEED)
 })
 onKeyDown('a', () => {
-    player.move(-SPEED, 0)
+    p1.move(-SPEED, 0)
 })
 onKeyDown('s', () => {
-    player.move(0, SPEED)
+    p1.move(0, SPEED)
 })
 onKeyDown('d', () => {
-    player.move(SPEED, 0)
+    p1.move(SPEED, 0)
+})
+onKeyDown('i', () => {
+    p2.move(0, -SPEED)
+})
+onKeyDown('j', () => {
+    p2.move(-SPEED, 0)
+})
+onKeyDown('k', () => {
+    p2.move(0, SPEED)
+})
+onKeyDown('l', () => {
+    p2.move(SPEED, 0)
+})
+onKeyDown('t', () => {
+    p3.move(0, -SPEED)
+})
+onKeyDown('f', () => {
+    p3.move(-SPEED, 0)
+})
+onKeyDown('g', () => {
+    p3.move(0, SPEED)
+})
+onKeyDown('h', () => {
+    p3.move(SPEED, 0)
+})
+onKeyDown('-', () => {
+    p4.move(0, -SPEED)
+})
+onKeyDown('=', () => {
+    p4.move(0, -SPEED)
+})
+onKeyDown('p', () => {
+    p4.move(-SPEED, 0)
+})
+onKeyDown('[', () => {
+    p4.move(0, SPEED)
+})
+onKeyDown(']', () => {
+    p4.move(SPEED, 0)
 })
