@@ -8,6 +8,6 @@ Doc. Start
 kaboom({
     width:420 + 69,
     height:420 + 69,
-    scale:1,
+    scale:1.0,
 })
 
