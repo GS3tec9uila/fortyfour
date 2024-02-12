@@ -6,8 +6,8 @@ Doc. Start
 */
 
 kaboom({
-    width:420 + 69,
-    height:420 + 69,
+    width:512,
+    height:512,
     scale:1.69,
 })
 //setGravity(200)
@@ -15,20 +15,53 @@ loadRoot('assets/')
 loadSprite('cobble', 'cobble.png')
 loadSprite('p1', 'p1.png')
 loadSprite('back', 'back.jpeg')
-const back = add([
-    sprite('back'),
-    area(),
-    pos(0,0),
-    area(),
-    body({isStatic: true}),
-    {speed: 69},
-])
+const lvl1 = addLevel([
+    // 16x1 tiles
+    'øøøøøøøøøøøøøøøøøøøøøøøøøøøøøøø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'øøøøøøøøøøøøøøøøøøøøøøøøøøøøøøø',],{
+        tileWidth:16,
+        tileHeight:16,
+        tiles:{
+            "ø": () => [
+                sprite('cobble'),
+            ]
+        }
+    })
 const SPEED = 69
 const player = add([
     sprite('p1'),
     scale(.5),
     area(),
-    pos(150,0)])
+    pos(32,32)])
 onKeyDown('w', () => {
     player.move(0, -SPEED)
 })
