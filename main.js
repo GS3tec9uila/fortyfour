@@ -6,17 +6,19 @@ Doc. Start
 */
 
 kaboom({
-    width:512,
-    height:512,
+    width:496,
+    height:496,
     scale:1.69,
 })
 //setGravity(200)
 loadRoot('assets/')
-loadSprite('cobble', 'cobble.png')
 loadSprite('p1', 'p1.png')
 loadSprite('p2', 'p2.png')
 loadSprite('p3', 'p3.png')
 loadSprite('p4', 'p4.png')
+loadRoot('tiles/')
+loadSprite('cobble', 'cobble.png')
+loadSprite('water', 'water1.png')
 const lvl1 = addLevel([
     // 16x1 tiles
     'øøøøøøøøøøøøøøøøøøøøøøøøøøøøøøø',
@@ -54,8 +56,9 @@ const lvl1 = addLevel([
         tileHeight:16,
         tiles:{
             "ø": () => [
-                sprite('cobble'),
-            ]
+                sprite('cobble')],
+            'x': () => [
+                sprite('water1')]
         }
     })
 const SPEED = 69
