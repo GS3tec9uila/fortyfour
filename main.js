@@ -13,14 +13,11 @@ kaboom({
 //setGravity(0)
 loadRoot('assets/')
 loadSprite('nrg', 'nrg.png')
-loadSprite('d1k', 'cwd2.png')
-loadSprite('csaw', 'csaw.png')
-loadSprite('cobble', 'cobble.png')
-loadSprite('camodick', 'cwd.png')
-loadSprite('cdsaw', 'cwdsaw.png')
+loadSprite('cobble', 'greyBricks.png')
 loadSprite('gem', 'gem.png')
 loadSprite('healthpack', 'heal.png')
-loadSprite('nrg','nrg.png')
+loadSprite('iceBricks','iceBricks.png')
+loadSprite('idleFlash', '/player/flash/idle/idleFlash9.png')
 // loadSprite('G19', 'G19.png')
 //     loadSprite('357', '357.png')
 const lvl1 = addLevel([
@@ -64,7 +61,7 @@ const lvl1 = addLevel([
                 area(),
                 body({isStatic: true})],
             "o": () => [
-                sprite('agwa'),
+                sprite('iceBricks'),
                 area(),
                 body({isStatic: true})],
             "g": () => [
@@ -84,9 +81,10 @@ const lvl1 = addLevel([
                 body({isStatic: false}),]}})       
 const SPEED = 55
 const player = add([
-    sprite('camodick'),
+    sprite('idleFlash'),
     pos(80,40),
-    scale(.2),
+    scale(.15),
+    rotate(90),
     area(),
     body(),
     "friendly",
@@ -106,9 +104,9 @@ const player = add([
     medmg: 1,
     prdmg: 0,}])
 const cpudick = add([
-    sprite('d1k'),
+    sprite('idleFlash'),
     pos(420, 455),
-    scale(.2),
+    scale(.15),
     area(),
     body(),
     rotate(180),
