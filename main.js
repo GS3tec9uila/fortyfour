@@ -10,46 +10,50 @@ kaboom({
     height:496,
     scale:2,
 })
-//setGravity(200)
+//setGravity(0)
 loadRoot('assets/')
-loadSprite('p1', 'p1.png')
-loadSprite('p2', 'p2.png')
-loadSprite('p3', 'p3.png')
-loadSprite('p4', 'p4.png')
-loadRoot('tiles/')
+loadSprite('nrg', 'nrg.png')
+loadSprite('d1k', 'cwd2.png')
+loadSprite('csaw', 'csaw.png')
 loadSprite('cobble', 'cobble.png')
-loadSprite('agwa', 'Water1.png')
+loadSprite('camodick', 'cwd.png')
+loadSprite('cdsaw', 'cwdsaw.png')
+loadSprite('gem', 'gem.png')
+loadSprite('healthpack', 'heal.png')
+loadSprite('nrg','nrg.png')
+// loadSprite('G19', 'G19.png')
+//     loadSprite('357', '357.png')
 const lvl1 = addLevel([
-    // 16x16 tiles
+    // 16x16 Tiles on a 30x30 Tile Map (496x496)
     'øøøøøøøøøøøøøøøøøøøøøøøøøøøøøøø',
+    'ø                 ø           ø',
+    'ø b c                         ø',
+    'ø                             ø',
+    'ø            øøøøøø     g     ø',
+    'ø    ø       ø                ø',
+    'ø    ø       ø                ø',
+    'ø    ø   øøøøø                ø',
+    'ø    ø g ø                    ø',
+    'øøøøøø   ø                    ø',
+    'ø        ø                    ø',
+    'ø      g ø                    ø',
+    'ø        ø                    ø',
+    'ø                             ø',
+    'ø                    g        ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø      g                      ø',
     'ø                             ø',
     'ø                             ø',
     'ø                             ø',
     'ø                             ø',
     'ø                             ø',
+    'ø    g             g          ø',
+    'ø                      a      ø',
     'ø                             ø',
     'ø                             ø',
-    'ø                             ø',
-    'ø                             ø',
-    'ø                             ø',
-    'ø                             ø',
-    'ø                             ø',
-    'ø                             ø',
-    'ø                             ø',
-    'ø                             ø',
-    'ø                             ø',
-    'ø                             ø',
-    'ø                             ø',
-    'ø                             ø',
-    'ø                             ø',
-    'ø                             ø',
-    'ø                             ø',
-    'ø                             ø',
-    'ø                             ø',
-    'ø                             ø',
-    'ø                             ø',
-    'ø                             ø',
-    'ø                             ø',
+    'ø                         c b ø',
     'ø                             ø',
     'øøøøøøøøøøøøøøøøøøøøøøøøøøøøøøø',],{
         tileWidth:16,
@@ -62,88 +66,68 @@ const lvl1 = addLevel([
             "o": () => [
                 sprite('agwa'),
                 area(),
-                body({isStatic: true}),]}})
-const SPEED = 69
-const p1 = add([
-    sprite('p1'),
-    scale(1),
+                body({isStatic: true})],
+            "g": () => [
+                sprite('gem'),
+                scale(.4), // 69, Nice
+                area(),
+                body({isStatic: false})],
+            "a": () => [
+                sprite('healthpack'),
+                scale(.25),
+                area(),
+                body({isStatic: false})],
+            "b": () => [
+                sprite('nrg'),
+                scale(0.3),
+                area(),
+                body({isStatic: false}),]}})       
+const SPEED = 55
+const player = add([
+    sprite('camodick'),
+    pos(80,40),
+    scale(.2),
     area(),
-    pos(32,32),
+    body(),
+    "friendly",
+    "player",
+    state('idle',['idle', 'walk', 'reload', 'fire', 'health','pickup', 'meleeSaw'],{
+        'idle':['idle', 'walk', 'reload', 'fire', 'health', 'meleeSaw', 'pickup'],
+        'walk':['idle', 'walk', 'reload', 'fire', 'health', 'meleeSaw', 'pickup'],
+        'reload':['idle', 'walk', 'reload', 'fire', 'health', 'meleeSaw', 'pickup'],
+        'fire':['idle', 'walk', 'reload', 'fire', 'health', 'meleeSaw', 'pickup'],
+        'health':['idle', 'walk', 'reload', 'fire', 'health', 'meleeSaw', 'pickup'],
+        'meleeSaw': ['idle', 'walk', 'reload', 'fire', 'health', 'meleeSaw', 'pickup'],
+        'pickup': ['idle', 'walk', 'reload', 'fire', 'health', 'meleeSaw', 'pickup'],
+    }),{
+    direction: 'down',
+    armed: false,
+    melee: true,
+    medmg: 1,
+    prdmg: 0,}])
+const cpudick = add([
+    sprite('d1k'),
+    pos(420, 455),
+    scale(.2),
+    area(),
+    body(),
+    rotate(180),
     "enemy",
+    "player",
 ])
-const p2 = add([
-    sprite('p2'),
-    scale(1),
-    area(),
-    pos(450,450),
-    "enemy"
-])
-const p3 = add([
-    sprite('p3'),
-    scale(1),
-    area(),
-    pos(450,32),
-    "enemy"
-])
-const p4 = add([
-    sprite('p4'),
-    scale(1),
-    area(),
-    pos(32,450),
-    "enemy"
-])
-onKeyDown('w', () => {
-    p1.move(0, -SPEED)
+onKeyDown('up', () => {
+    player.move(0, -SPEED)
 })
-onKeyDown('a', () => {
-    p1.move(-SPEED, 0)
+onKeyDown('left', () => {
+    player.move(-SPEED, 0)
 })
-onKeyDown('s', () => {
-    p1.move(0, SPEED)
+onKeyDown('down', () => {
+    player.move(0, SPEED)
 })
-onKeyDown('d', () => {
-    p1.move(SPEED, 0)
+onKeyDown('right', () => {
+    player.move(SPEED, 0)
 })
-onKeyDown('i', () => {
-    p2.move(0, -SPEED)
+player.onCollide("enemy", (enemy) => {
+   destroy(enemy)
 })
-onKeyDown('j', () => {
-    p2.move(-SPEED, 0)
-})
-onKeyDown('k', () => {
-    p2.move(0, SPEED)
-})
-onKeyDown('l', () => {
-    p2.move(SPEED, 0)
-})
-onKeyDown('t', () => {
-    p3.move(0, -SPEED)
-})
-onKeyDown('f', () => {
-    p3.move(-SPEED, 0)
-})
-onKeyDown('g', () => {
-    p3.move(0, SPEED)
-})
-onKeyDown('h', () => {
-    p3.move(SPEED, 0)
-})
-onKeyDown('-', () => {
-    p4.move(0, -SPEED)
-})
-onKeyDown('=', () => {
-    p4.move(0, -SPEED)
-})
-onKeyDown('p', () => {
-    p4.move(-SPEED, 0)
-})
-onKeyDown('[', () => {
-    p4.move(0, SPEED)
-})
-onKeyDown(']', () => {
-    p4.move(SPEED, 0)
-})
-p1.onCollide("enemy", (enemy) => {
-   destroy(p1)
-})
-p1.onCollideUpdate("enemy", () => {})
+player.onCollideUpdate("enemy", () => {})
