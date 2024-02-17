@@ -30,10 +30,10 @@ loadSprite('idleFlash16', '/player/flash/idle/idleFlash16.png')
 loadSprite('idleFlash17', '/player/flash/idle/idleFlash17.png')
 loadSprite('idleFlash18', '/player/flash/idle/idleFlash18.png')
 loadSprite('idleFlash19', '/player/flash/idle/idleFlash19.png')
-loadSprite('idelFlash_', 'idleFlash.png', {
+loadSprite('idleFlash_', 'idleFlash.png', {
     sliceX: 1,
-    sliceY: 6,
-    anims: {'idle-anims': {from: 0, to:0, loop:true}}})
+    sliceY: 20,
+    anims: {'iFlash_ani': {from: 0, to:19, loop:true}}})
 // loadSprite('G19', 'G19.png')
 //     loadSprite('357', '357.png')
 const lvl1 = addLevel([
@@ -97,7 +97,7 @@ const lvl1 = addLevel([
                 body({isStatic: false}),]}})       
 const SPEED = 55
 const player = add([
-    sprite('idleFlash'),
+    sprite('idleFlash_'),
     pos(80,40),
     scale(.15),
     rotate(90),
