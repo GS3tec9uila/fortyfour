@@ -1,10 +1,3 @@
-/*
-Doc. Start
-48HR Game Development
-
-".44 Cal"
-*/
-
 kaboom({
     width:496,
     height:496,
@@ -37,6 +30,10 @@ loadSprite('idleFlash16', '/player/flash/idle/idleFlash16.png')
 loadSprite('idleFlash17', '/player/flash/idle/idleFlash17.png')
 loadSprite('idleFlash18', '/player/flash/idle/idleFlash18.png')
 loadSprite('idleFlash19', '/player/flash/idle/idleFlash19.png')
+loadSprite('idelFlash_', 'idleFlash.png', {
+    sliceX: 1,
+    sliceY: 6,
+    anims: {'idle-anims': {from: 0, to:0, loop:true}}})
 // loadSprite('G19', 'G19.png')
 //     loadSprite('357', '357.png')
 const lvl1 = addLevel([
