@@ -1,10 +1,11 @@
 kaboom({
     width:496,
     height:496,
-    scale:2,
+    scale:1,
 })
-//setGravity(0)
+// setGravity(0)
 loadRoot('assets/')
+// import hS from 'health.js'
 loadSprite('nrg', 'nrg.png')
 loadSprite('cobble', 'greyBricks.png')
 loadSprite('gem', 'gem.png')
@@ -31,42 +32,42 @@ loadSprite('idleFlash17', '/player/flash/idle/idleFlash17.png')
 loadSprite('idleFlash18', '/player/flash/idle/idleFlash18.png')
 loadSprite('idleFlash19', '/player/flash/idle/idleFlash19.png')
 loadSprite('idleFlash_', 'idleFlash.png', {
-    sliceX: 1,
-    sliceY: 20,
-    anims: {'iFlash_ani': {from: 0, to:19, loop:true}}})
+    sliceX:20,
+    sliceY:1,
+    anims: {'iFlash_ani': {from:0, to:19, loop:true}}})
 // loadSprite('G19', 'G19.png')
 //     loadSprite('357', '357.png')
 const lvl1 = addLevel([
     // 16x16 Tiles on a 30x30 Tile Map (496x496)
     'øøøøøøøøøøøøøøøøøøøøøøøøøøøøøøø',
-    'ø                 ø           ø',
-    'ø b c                         ø',
-    'ø                             ø',
-    'ø            øøøøøø     g     ø',
-    'ø    ø       ø                ø',
-    'ø    ø       ø                ø',
-    'ø    ø   øøøøø                ø',
-    'ø    ø g ø                    ø',
-    'øøøøøø   ø                    ø',
-    'ø        ø                    ø',
-    'ø      g ø                    ø',
-    'ø        ø                    ø',
-    'ø                             ø',
-    'ø                    g        ø',
+    'ø           øøøøøøøøø         ø',
     'ø                             ø',
     'ø                             ø',
     'ø                             ø',
-    'ø      g                      ø',
+    'ø           øøøøøøøøø         ø',
+    'ø           øøøøøøøøø         ø',
+    'ø           øø     øø         ø',
+    'ø           øø     øøøø    øøøø',
+    'ø           øø     øøøø    øøøø',
+    'øøøøø    øøøøø                ø',
+    'øøøøø    øøøøø                ø',
     'ø                             ø',
     'ø                             ø',
     'ø                             ø',
     'ø                             ø',
     'ø                             ø',
-    'ø    g             g          ø',
-    'ø                      a      ø',
     'ø                             ø',
     'ø                             ø',
-    'ø                         c b ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
+    'ø                             ø',
     'ø                             ø',
     'øøøøøøøøøøøøøøøøøøøøøøøøøøøøøøø',],{
         tileWidth:16,
@@ -99,7 +100,7 @@ const SPEED = 55
 const player = add([
     sprite('idleFlash_'),
     pos(80,40),
-    scale(.15),
+    scale(.55),
     rotate(90),
     area(),
     body(),
@@ -119,6 +120,7 @@ const player = add([
     melee: true,
     medmg: 1,
     prdmg: 0,}])
+player.play('iFlash_ani')
 const cpudick = add([
     sprite('idleFlash'),
     pos(420, 455),
