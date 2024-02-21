@@ -1,7 +1,7 @@
 kaboom({
     width:496,
     height:496,
-    scale:1,
+    scale:1.25,
 })
 // setGravity(0)
 loadRoot('assets/')
